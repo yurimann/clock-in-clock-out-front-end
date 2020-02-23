@@ -10,7 +10,7 @@ class ClockButton extends React.Component {
     this.generateClockButton = this.generateClockButton.bind(this)
     this.handleClockCall = this.handleClockCall.bind(this)
     this.state = {
-      clockStatus: 'Clock',
+      clockStatus: 'Press to clock',
       activityList: []
     }
   }

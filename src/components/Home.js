@@ -31,11 +31,11 @@ componentWillUnmount() {
 
     return (
       <div>
+        <LogButton message={'Log Out'}/>
         <ClockButton />
         <div onClick={() => {
           window.sessionStorage.removeItem('userId')
           this.setState({redirect: true})}}>
-        <LogButton message={'Log Out'}/>
         </div>
         {this.state.redirect ? (
           <Redirect to="/login" />

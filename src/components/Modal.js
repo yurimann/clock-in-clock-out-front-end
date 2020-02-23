@@ -29,7 +29,7 @@ class Modal extends Component {
     return (
       <div>
         {this.state.showModal ? (
-          <div class="ui visible content" style={{'border': 'solid 1px', 'height': '300px', 'width': '600px'}}>
+          <div class="ui visible content" style={{'border': '1px solid', 'height': '300px','width': '600px', 'position': 'fixed','top': '0', 'background': 'white'}}>
             <div className="ui input"><input type="text" value={this.state.clockIn} onChange={this.handleChange}/></div>
             <div className="ui input"><input type="text" value={this.state.clockOut} onChange={this.handleChange}/>
             </div>
