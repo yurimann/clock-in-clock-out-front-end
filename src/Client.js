@@ -6,7 +6,8 @@ const apiHeaders = {
   'Cache-Control': 'no-cache',
 }
 
-const timeTrackerBackend = 'http://localhost:8080'
+// const timeTrackerBackend = 'http://localhost:8080'
+const timeTrackerBackend = 'https://arcane-wildwood-70873.herokuapp.com'
 
 const login = (providedEmail, pw) => {
   return fetch(`${timeTrackerBackend}/login`, {

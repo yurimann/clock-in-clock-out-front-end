@@ -32,7 +32,9 @@ componentWillUnmount() {
     return (
       <div>
         <ClockButton />
-        <div onClick={() => {this.setState({redirect: true})}}>
+        <div onClick={() => {
+          window.sessionStorage.removeItem('userId')
+          this.setState({redirect: true})}}>
         <LogButton message={'Log Out'}/>
         </div>
         {this.state.redirect ? (
