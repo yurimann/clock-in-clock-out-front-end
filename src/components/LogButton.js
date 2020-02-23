@@ -5,7 +5,7 @@ class LogButton extends Component {
   render() {
     return (
       <div>
-        <button class="ui secondary button">{this.props.message}</button>
+        <button className="ui secondary button">{this.props.message}</button>
       </div>
     )
   }

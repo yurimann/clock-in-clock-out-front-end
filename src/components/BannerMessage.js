@@ -5,7 +5,7 @@ class BannerMessage extends React.Component{
   render(){
     return(
       <div>
-       <button class="ui primary button"> {this.props.message}</button>
+       <button className="ui primary button"> {this.props.message}</button>
       </div>
     )
   }

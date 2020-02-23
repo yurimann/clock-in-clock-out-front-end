@@ -29,17 +29,8 @@ class ClockButton extends React.Component {
     })
     Client.userLogs(window.sessionStorage.getItem('userId')).then(activities => {
       this.setState({activityList: activities})
-      // this.setState({clockStatus: window.sessionStorage.getItem('clockStatus')})
     })
   }
-
-  // renderActivityList() {
-  //   return (
-  //     <div>
-  //       <ActivityList />
-  //     </div>
-  //   )
-  // }
 
   generateClockButton() {
     return (

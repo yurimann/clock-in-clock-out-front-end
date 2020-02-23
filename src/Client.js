@@ -18,16 +18,17 @@ const login = (providedEmail, pw) => {
       password: pw
     })
   }).then((data) => {
-        if (data.status !== undefined) {
-          if (data.status === 200) {
-            return data.json().then((data) => {
-              return data})
-            }
-          else return {message: 'Unauthorized'}
-        }
-      }).catch((err) => {
-        Promise.resolve({ message: err })}
-      )
+    if (data.status !== undefined) {
+      if (data.status === 200) {
+        return data.json().then((data) => {
+          return data
+        })
+      } else return {message: 'Unauthorized'}
+    }
+  }).catch((err) => {
+      Promise.resolve({message: err})
+    }
+  )
 }
 
 const clock = () => {
@@ -39,20 +40,47 @@ const clock = () => {
       userId: userId
     })
   }).then((data) => {
-        if (data.status !== undefined) {
-          if (data.status === 200) {
-            return data.json().then((data) => {
-              console.log(data.data.clock_out)
-              if (data.data.clock_out === null || data.data.clock_out === ''){ window.sessionStorage.setItem('clockStatus', 'Clock In')} else window.sessionStorage.setItem('clockStatus', 'Clock Out')
-              console.log(window.sessionStorage.getItem('clockStatus'))
-              userLogs(userId)
-              return data})
-            }
-          else return {message: 'Unauthorized'}
-        }
-      }).catch((err) => {
-        Promise.resolve({ message: err })}
-      )
+    if (data.status !== undefined) {
+      if (data.status === 200) {
+        return data.json().then((data) => {
+          console.log(data.data.clock_out)
+          if (data.data.clock_out === null || data.data.clock_out === '') {
+            window.sessionStorage.setItem('clockStatus', 'Clock In')
+          } else window.sessionStorage.setItem('clockStatus', 'Clock Out')
+          console.log(window.sessionStorage.getItem('clockStatus'))
+          userLogs(userId)
+          return data
+        })
+      } else return {message: 'Unauthorized'}
+    }
+  }).catch((err) => {
+      Promise.resolve({message: err})
+    }
+  )
+}
+
+const editEntry = (clockingId, clockIn, clockOut) => {
+  return fetch(`${timeTrackerBackend}/editEntry`, {
+    method: 'PUT',
+    headers: apiHeaders,
+    body: JSON.stringify({
+      clockingId: clockingId,
+      clock_in: clockIn,
+      clock_out: clockOut
+    })
+  }).then((data) => {
+    if (data.status !== undefined) {
+      if (data.status === 200) {
+        return data.json().then((data) => {
+          console.log(data.data)
+        })
+      } else return {message: 'Error'}
+    }
+  }).catch((err) => {
+    console.log('In catch block')
+      Promise.resolve({message: err})
+    }
+  )
 }
 
 const userLogs = (userId) => {
@@ -60,21 +88,23 @@ const userLogs = (userId) => {
     method: 'GET',
     headers: apiHeaders,
   }).then((data) => {
-        if (data.status !== undefined) {
-          if (data.status === 200) {
-            return data.json().then((data) => {
-              return data.logs})
-            }
-          else return {message: 'Unauthorized'}
-        }
-      }).catch((err) => {
-        Promise.resolve({ message: err })}
-      )
+    if (data.status !== undefined) {
+      if (data.status === 200) {
+        return data.json().then((data) => {
+          return data.logs
+        })
+      } else return {message: 'Unauthorized'}
+    }
+  }).catch((err) => {
+      Promise.resolve({message: err})
+    }
+  )
 }
 
 const Client = {
   login: login,
   userLogs: userLogs,
-  clock: clock
+  clock: clock,
+  editEntry: editEntry
 }
 export default Client
