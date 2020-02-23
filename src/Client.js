@@ -1,10 +1,15 @@
 import fetch from 'isomorphic-fetch'
+import https from 'https'
 
 const apiHeaders = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
   'Cache-Control': 'no-cache',
 }
+
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+})
 
 // const timeTrackerBackend = 'http://localhost:8080'
 const timeTrackerBackend = 'https://arcane-wildwood-70873.herokuapp.com'
@@ -16,7 +21,8 @@ const login = (providedEmail, pw) => {
     body: JSON.stringify({
       email: providedEmail,
       password: pw
-    })
+    }),
+    agent: httpsAgent
   }).then((data) => {
     if (data.status !== undefined) {
       if (data.status === 200) {
@@ -38,7 +44,8 @@ const clock = () => {
     headers: apiHeaders,
     body: JSON.stringify({
       userId: userId
-    })
+    }),
+    agent: httpsAgent
   }).then((data) => {
     if (data.status !== undefined) {
       if (data.status === 200) {
@@ -65,7 +72,8 @@ const editEntry = (clockingId, clockIn, clockOut) => {
       clockingId: clockingId,
       clock_in: clockIn,
       clock_out: clockOut
-    })
+    }),
+    agent: httpsAgent
   }).then((data) => {
     if (data.status !== undefined) {
       if (data.status === 200) {
@@ -85,6 +93,7 @@ const userLogs = (userId) => {
   return fetch(`${timeTrackerBackend}/userLogs?userId=${userId}`, {
     method: 'GET',
     headers: apiHeaders,
+    agent: httpsAgent
   }).then((data) => {
     if (data.status !== undefined) {
       if (data.status === 200) {
