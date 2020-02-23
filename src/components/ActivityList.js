@@ -36,9 +36,8 @@ class ActivityList extends React.Component {
       return <tr>{keyValues}
         <button className="ui button" onClick={() => {
           this.setState({recordNumber: keyValues[0].props.children}, () => {
-            console.log(this.state.recordNumber)
+            console.log(keyValues[0])
             this.setState({recordToEdit: keyValues[0]._self.props['activityList'].find(x => x['clocking_id'] === this.state.recordNumber)}, () => {
-              console.log(this.state.recordToEdit)
             })
           })
           this.setState({showModal: true})

@@ -43,11 +43,9 @@ const clock = () => {
     if (data.status !== undefined) {
       if (data.status === 200) {
         return data.json().then((data) => {
-          console.log(data.data.clock_out)
           if (data.data.clock_out === null || data.data.clock_out === '') {
             window.sessionStorage.setItem('clockStatus', 'Clock In')
           } else window.sessionStorage.setItem('clockStatus', 'Clock Out')
-          console.log(window.sessionStorage.getItem('clockStatus'))
           userLogs(userId)
           return data
         })
