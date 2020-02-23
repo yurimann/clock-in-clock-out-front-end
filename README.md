@@ -25,3 +25,7 @@ npm install
 ## Running locally
 1. Run the application by doing `npm start`
 
+### <a href='https://github.com/yurimann/clock-in-clock-out-front-end/wiki/Approach'>How I approached the challenge</a>
+### <a href='https://github.com/yurimann/clock-in-clock-out-front-end/wiki/Schema'>Schema choice</a>
+### <a href='https://github.com/yurimann/clock-in-clock-out-front-end/wiki/Changes-and-Enhancements'>What I would do with more time</a>
+
